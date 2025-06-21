@@ -17,7 +17,7 @@ export default function Users() {
   // This method fetches the Users from the database.
   useEffect(() => {
     async function getUsers() {
-      const response = await fetch(`${process.env.API_URL}/users/`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
@@ -32,7 +32,7 @@ export default function Users() {
 
   // This method will delete a User
   async function deleteUser(id) {
-    await fetch(`${process.env.API_URL}/users/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/users/${id}`, {
       method: "DELETE",
     });
     const newUsers = users.filter((el) => el._id !== id);
@@ -55,7 +55,7 @@ export default function Users() {
       let response;
       let newUser = { id: "", name: name, date: new Date().toString() };
       if (isNew) {
-        response = await fetch(`${process.env.API_URL}/users`, {
+        response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
