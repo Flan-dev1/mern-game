@@ -1,17 +1,15 @@
-import Express  from "express";
+import express from "express";
 import cors from "cors";
+import users from "./routes/users.js";
 
-const app = Express();
+const PORT = process.env.PORT || 5050;
+const app = express();
 
 app.use(cors());
+app.use(express.json());
+app.use("/users", users);
 
-
-app.get("/api/hello/", (req, res) => {
-    res.json({
-        message: "Hello World"
-    });
+// start the Express server
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
-
-app.listen(8000, () => {
-    console.log("Server running on port 8000");
-})
