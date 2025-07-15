@@ -27,14 +27,6 @@ Deploy a MERN Stack to Vercel.
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling.
 - [Express](https://expressjs.com/) - Fast, opinionated, minimalist web framework for Node.js.
 
-## 📸 Screenshots:
-- Frontend:
-<img src=".github/static/client.png" alt="client"/> 
-
-- Backend:
-<img src=".github/static/api.png" alt="api"/> 
-
-
 ## 📁 Project structure:
 
 ```
