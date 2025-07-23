@@ -26,6 +26,10 @@ mern-game-deployment/
 - Express backend with MongoDB Atlas
 - RESTful API for managing entries
 
+## 🎫 LICENSE:
+
+[MIT LICENSE](https://github.com/codingforinnovations/mern-vercel/blob/main/LICENSE)
+
 ---
 
 <p align="center">
@@ -38,7 +42,3 @@ mern-game-deployment/
     For Programmers, By Programmers.
   </p>
 </p>
-
-## 🎫 LICENSE:
-
-[MIT LICENSE](https://github.com/codingforinnovations/mern-vercel/blob/main/LICENSE)
