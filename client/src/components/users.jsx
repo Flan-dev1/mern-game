@@ -13,6 +13,7 @@ export default function Users() {
   const [users, setUsers] = useState([]);
   const [name, setName] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [isNew, setIsNew] = useState(true);
   const navigate = useNavigate();
 
   // This method fetches the Users from the database.
@@ -51,32 +52,26 @@ export default function Users() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    const isNew = !users.find((user) => user.name === name);
+    //const isNew = !users.find((user) => user.name === name);
 
     try {
       let response;
       let newUser = { id: "", name: name, date: new Date().toString() };
-      if (isNew) {
-        response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+      response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
 
-        if (users.length >= 10) {
-          await deleteUser(users[Math.floor(Math.random() * users.length)]._id);
-        } else {
-          setUsers([...users, newUser]);
-        }
+      if (!response.ok) {
+        if (response.statusText === "Error 404: Name exists") setIsNew(false);
+        throw new Error(`HTTP error! status: ${response.status}`);
       } else {
-        console.log("Not a new name");
-        return;
+        setIsNew(true);
+        setUsers([...users, newUser]);
       }
     } catch (error) {
       console.error("A problem occurred with your fetch operation: ", error);
@@ -127,6 +122,8 @@ export default function Users() {
           </div>
 
           <form onSubmit={onSubmit} className="my-6 border rounded-lg overflow-hidden p-4">
+            {!isNew && <h3 className="text-center text-1xl font-semibold pb-3 text-red-500">Name already exists. Add a new name</h3>}
+
             <div className="sm:col-span-4">
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">

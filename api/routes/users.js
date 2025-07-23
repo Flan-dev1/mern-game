@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
       let result = await collection.insertOne(newDocument);
       res.send(result).status(204);
     } else {
-      res.status(400).send("User already exists");
+      res.status(400).send("Error 404: Name exists");
     }
   } catch (err) {
     console.error(err);
