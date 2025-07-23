@@ -44,7 +44,6 @@ router.post("/", async (req, res) => {
       let result = await collection.insertOne(newDocument);
       res.send(result).status(204);
     } else {
-      res.statusMessage = "Error 400: Name exists";
       res.status(400).send();
     }
   } catch (err) {

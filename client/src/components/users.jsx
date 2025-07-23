@@ -52,8 +52,6 @@ export default function Users() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    //const isNew = !users.find((user) => user.name === name);
-
     try {
       let response;
       let newUser = { id: "", name: name, date: new Date().toString() };
@@ -67,7 +65,7 @@ export default function Users() {
       });
 
       if (!response.ok) {
-        if (response.statusText === "Error 400: Name exists") setIsNew(false);
+        if (response.status === 400) setIsNew(false);
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         setIsNew(true);
