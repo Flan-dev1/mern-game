@@ -67,7 +67,7 @@ export default function Users() {
       });
 
       if (!response.ok) {
-        if (response.statusText === "Error 404: Name exists") setIsNew(false);
+        if (response.statusText === "Error 400: Name exists") setIsNew(false);
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         setIsNew(true);
