@@ -35,9 +35,17 @@ router.post("/", async (req, res) => {
       name: req.body.name,
       date: req.body.date,
     };
+
     let collection = await db.collection("users");
-    let result = await collection.insertOne(newDocument);
-    res.send(result).status(204);
+    let query = { name: req.body.name };
+    let searchResult = await collection.findOne(query);
+
+    if (!searchResult) {
+      let result = await collection.insertOne(newDocument);
+      res.send(result).status(204);
+    } else {
+      res.status(400).send("User already exists");
+    }
   } catch (err) {
     console.error(err);
     res.status(500).send("Error adding user");
