@@ -1,4 +1,4 @@
-# MERN Stack Game Deployment
+# MERN Stack Game
 
 A full-stack MERN application deployed with Vercel and Render.  
 This project demonstrates a simple "Name Game" where users can add their name. The only 10 entries are kept and are sorted from oldest to newest. When the list exceeds 10 entries, a random entry is replaced.
